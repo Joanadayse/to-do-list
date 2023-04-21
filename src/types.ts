@@ -4,3 +4,10 @@ export type TUsersDB={
     email: string,
     password:string
 }
+export type TTasksDB={
+    id: string,
+    title: string,
+    description: string,
+    create_at:string,
+    status: number
+}
