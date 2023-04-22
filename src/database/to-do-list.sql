@@ -18,7 +18,7 @@ CREATE TABLE users_tasks (
 		user_id TEXT NOT NULL,
 		task_id TEXT NOT NULL,
 		FOREIGN KEY (user_id) REFERENCES users (id),
-		FOREIGN KEY (task_id) REFERENCES tasks (id)
+		FOREIGN KEY (task_id) REFERENCES tasks (id) ON UPDATE CASCADE
 );
 
 INSERT INTO users (id, name, email, password)
@@ -43,3 +43,22 @@ VALUES
 SELECT * FROM users;
 SELECT * FROM tasks;
 SELECT * FROM users_tasks;
+
+
+DROP TABLE users_tasks;
+
+DROP TABLE tasks;
+
+DROP TABLE users;
+
+SELECT * FROM  users_tasks
+INNER JOIN users
+ON users_tasks.user_id = users.id
+RIGHT JOIN tasks
+ON users_tasks.task_id= tasks.id;
+
+SELECT * FROM tasks
+LEFT JOIN users_tasks
+ON users_tasks.task_id= tasks.id
+LEFT JOIN users
+ON users_tasks.user_id= users.id;
